@@ -33,3 +33,25 @@ exports.createTag  = async (req,res) => {
         })
     }   
 }
+
+//show all tags
+exports.showAlltags = async (req,res) => {
+    try{
+        const allTags = await Tags.find({} , {
+            name:true,
+            description:true,
+        });
+        res.status(200).json({
+            success:true,
+            message:"all tags returned succefully",
+            allTags,
+        })
+
+    }
+    catch(error){
+        return res.status(500).json({
+            success:false,
+            message:"cannot able to find all tags"
+        })
+    }
+}
