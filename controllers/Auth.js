@@ -172,16 +172,10 @@ exports.login = async (req,res) => {
         }
         //password matching -> generating JWT 
         if(await bcrypt.compare(password,user.password)){
-            try{
-
-            }
-            catch(error){
-                
-            }
             const payload = {
                 email:user.email,
                 id:user._id,
-                role:user.role,
+                accountType:user.accountType,
             }
             const token = jwt.sign(payload,process.env.JWT_SECRET , {
                 expiresIn:"2h",
@@ -216,3 +210,7 @@ exports.login = async (req,res) => {
     
 }
 
+//change password
+exports.changePassword = async (req,res) => {
+    
+}
